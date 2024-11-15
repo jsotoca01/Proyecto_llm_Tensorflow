@@ -1,0 +1,23 @@
+ProyectoLLM/
+├── config/
+│   └── config.yaml                      # Archivo de configuración del proyecto
+├── data/
+│   ├── raw/                             # Datos sin procesar
+│   └── processed/                       # Datos procesados
+├── docs/                                # Documentación adicional
+│   └── usage.md                         # Instrucciones de uso adicionales
+├── src/                                 # Código fuente principal
+│   ├── __init__.py                      # Inicializa el paquete src
+│   ├── config_loader.py                 # Carga la configuración
+│   ├── data_processing/                 # Submódulo para procesar datos
+│   │   ├── __init__.py                  # Inicializa el submódulo
+│   │   ├── data_loader.py               # Carga el dataset
+│   │   ├── preprocessor.py              # Preprocesa el dataset
+│   │   └── data_preprocessing.py        # Orquestador de procesamiento de datos
+│   ├── model/                           # Submódulo para el modelo
+│   │   ├── __init__.py                  # Inicializa el submódulo
+│   │   ├── train.py                     # Entrenamiento del modelo
+│   │   └── model.py                     # Definición del modelo Transformer
+│   ├── train_main.py                    # Script principal de entrenamiento
+│   └── utils.py                         # Funciones auxiliares
+└── main.py                              # Punto de entrada del proyecto

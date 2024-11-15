@@ -1,0 +1,55 @@
+# Archivo de configuración
+data:       
+  raw_data_path: "./data/raw"   # Ruta donde guardaremos los datos sin procesar
+  processed_data_path: "./data/processed/processed_imdb_reviews.npy" # Ruta para los datos ya procesados
+checkpoints:
+  checkpoint_dir: "./checkpoints/"
+
+model:
+  # Tamaño del vocabulario: Número total de palabras únicas que el modelo puede reconocer.
+  # Esto limita el vocabulario del modelo. Si aparece una palabra que no está en este rango,
+  # se asigna al token de OOV (out-of-vocabulary, fuera de vocabulario).
+  vocab_size: 10000
+
+  # Dimensión del embedding: Define la longitud de cada vector de embedding.
+  # Este valor establece la dimensión del espacio donde se representan las palabras.
+  # Valores más altos permiten al modelo captar relaciones complejas, aunque incrementan
+  # la carga computacional.
+  d_model: 128
+
+  # Número de cabezas en la atención multi-cabeza: Define cuántas cabezas de atención
+  # se usarán en el modelo. Cada cabeza aprende relaciones distintas en el texto.
+  # Este valor debe dividirse de forma exacta en d_model.
+  num_heads: 8
+
+  # Dimensión de la capa feedforward: Define el tamaño de la capa feedforward después
+  # de la atención multi-cabeza. Esta capa aplica transformaciones adicionales a las
+  # representaciones de cada palabra.
+  # Un valor de dff entre 2 y 4 veces el valor de d_model suele ser adecuado.
+  dff: 512
+
+  # Longitud máxima de secuencia: Define el número máximo de tokens que el modelo procesa en
+  # una secuencia. Este valor debe ser lo suficientemente grande como para capturar
+  # el contexto necesario en cada frase.
+  input_length: 512
+
+  # Número de capas de encoder: Define cuántas capas de atención completas se incluyen en el
+  # modelo. Cada capa adicional permite que el modelo capture relaciones más complejas, pero
+  # incrementa el costo computacional.
+  num_layers: 4
+
+
+
+training:
+  epochs: 10                   # Número de épocas (ciclos completos sobre los datos de entrenamiento)
+  dropout_rate: 0.1            # Tasa de dropout para evitar el sobreajuste (porcentaje de neuronas desactivadas aleatoriamente)
+  warmup_steps: 4000           # Número de pasos iniciales en los que la tasa de aprendizaje aumenta gradualmente antes de estabilizarse
+  batch_size: 16               # Tamaño del lote para el entrenamiento: Un tamaño de lote más grande utiliza más memoria, 
+  #por lo que debes considerar la capacidad de la GPU o la RAM disponible. Un tamaño común para entrenamientos en GPU es entre 16 y 64, mientras 
+  #que en CPU suelen ser valores menores, como 8 o 16. Yo lo hago con CPU, así que empiezo con 16
+  buffer_size: 10000           # Tamaño del buffer para mezclar el conjunto de datos
+
+optimizer:
+  beta_1: 0.9                  # Parámetro beta1 del optimizador Adam (controla el promedio móvil de los gradientes)
+  beta_2: 0.98                 # Parámetro beta2 del optimizador Adam (controla el promedio móvil de los cuadrados de los gradientes)
+  epsilon: 1e-9                # Pequeño valor para evitar divisiones por cero en Adam (para mayor estabilidad numérica)

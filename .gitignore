@@ -1,0 +1,55 @@
+# Entornos virtuales
+venv/
+env/
+*.env
+
+# Archivos generados por Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info
+*.eggs/
+
+# Archivos y carpetas de logs
+logs/
+*.log
+*.out
+*.err
+
+# Checkpoints y datos procesados
+checkpoints/
+data/processed/
+data/raw/
+data/*.npy
+
+# Archivos de configuración sensible
+config/config.yaml  # Si contiene datos sensibles, como credenciales
+
+# Archivos de salida y compilación
+*.manifest
+*.spec
+dist/
+build/
+*.bak
+
+# Archivos de editor o IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+
+# Archivos relacionados con TensorFlow
+*.pb
+*.h5
+*.ckpt
+*.tflite
+__MACOSX/
+
+# Archivos temporales del sistema operativo
+.DS_Store
+Thumbs.db
+*.temp
+*.tmp
