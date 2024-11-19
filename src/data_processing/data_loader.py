@@ -22,7 +22,8 @@ def load_imdb_data():
     
     # Extraer las reseñas de texto del conjunto de entrenamiento
     text_data = dataset["train"]["text"]
-    print("Ejemplo de reseña:", text_data[0])
+    labels = dataset["train"]["label"]
+    print("Ejemplo de reseña:", text_data[0], labels[0])
 
     # Usar la ruta desde el archivo de configuración
     raw_data_path = config["data"]["raw_data_path"]
@@ -33,6 +34,10 @@ def load_imdb_data():
             file.write(review + "\n")
     
     print("Reseñas de IMDb guardadas en imdb_reviews.txt")
+    
+    with open(os.path.join(raw_data_path, "imdb_labels.txt"), "w", encoding="utf-8") as file_labels:
+        for label in labels:
+            file_labels.write(str(label) + "\n")
 
 if __name__ == "__main__":
     load_imdb_data()
